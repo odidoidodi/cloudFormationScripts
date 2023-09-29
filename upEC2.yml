@@ -10,3 +10,20 @@ Resources:
             - " "
             - - "My instance in"
               - !Ref AWS::Region
+
+      SecurityGroups:
+        - !Ref TestSG
+  TestSG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow http && ssh from my host
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 213.91.249.122/32
+
