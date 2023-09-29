@@ -1,5 +1,5 @@
 Mappings:
-  RegionMap:
+  AmiRegionMap:
     us-east-1:
       AMI: "ami-03a6eaae9938c858c"
     us-west-1:
