@@ -1,0 +1,3 @@
+# cloudFormationScripts
+Testing CloudFormation service in AWS
+Yaml script that automate services in AWS such as bringing up EC2 instances and adding some configurations, etc...
