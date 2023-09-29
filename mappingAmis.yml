@@ -1,3 +1,18 @@
+Parameters:
+  NameOfService:
+    Description: "This stack is used for... "
+    Type: String
+  InstanceTypeParameter:
+    Type: String
+    Default: t2.micro
+    AllowedValues:
+      - t2.micro
+      - m1.small
+      - m1.large
+    Description: Enter t2.micro, m1.small, or m1.large. Default is t2.micro.
+  KeyName:
+    Description: Name of EC2 login Key
+    Type: AWS::EC2::KeyPair::KeyName
 Mappings:
   AmiRegionMap:
     us-east-1:
@@ -8,17 +23,15 @@ Resources:
   MyInstance:
     Type: AWS::EC2::Instance
     Properties:
-      InstanceType: t2.micro
+      InstanceType: !Ref InstanceTypeParameter
+      KeyName: !Ref KeyName
       ImageId: !FindInMap
         - AmiRegionMap
         - !Ref AWS::Region
         - AMI
       Tags:
         - Key:   "Name"
-          Value: !Join
-            - " "
-            - - "My instance in"
-              - !Ref AWS::Region
+          Value: !Ref NameOfService
       SecurityGroups:
         - !Ref TestSG
   TestSG:
@@ -34,3 +47,5 @@ Resources:
           FromPort: 22
           ToPort: 22
           CidrIp: 0.0.0.0/0
+
+
