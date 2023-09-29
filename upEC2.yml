@@ -5,5 +5,8 @@ Resources:
       InstanceType: t2.micro
       ImageId: ami-053b0d53c279acc90
       Tags:
-         - Key:   "Name"
-           Value: "TestEC2"
+        - Key:   "Name"
+          Value: !Join
+            - " "
+            - - "My instance in"
+              - !Ref AWS::Region
