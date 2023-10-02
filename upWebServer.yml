@@ -20,7 +20,7 @@ Mappings:
     us-west-1:
       AMI: "ami-06d2c6c1b5cbaee5"
 Resources:
-  MyInstance:
+  WebServer:
     Type: AWS::EC2::Instance
     Metadata:
       AWS::CloudFormation::Init:
@@ -74,6 +74,9 @@ Resources:
           CidrIp: 0.0.0.0/0
 
 Outputs:
-  PublicDNSName:
-    Value: !GetAtt MyInstance.PublicDnsName
+  PrintInfo:
+    Value: !GetAtt
+      - WebServer
+      - PublicDnsName
+
 
